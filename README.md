@@ -3,7 +3,7 @@
 - **Name:** Muhammad Nouman
 - **Reference:** MATACS-TH-2026-02
 - **Repository:** https://github.com/muhammad-nouman786/matacs-th-2026-02
-- **Time actually spent:** XX minutes
+- **Time actually spent:** 50 minutes
 
 ## Files
 
@@ -21,4 +21,4 @@ The AI only reads the proposals and pulls out facts, each with a quote as eviden
 
 ## How I used AI tools
 
-I used Claude (in Claude Code) to break down the brief and to draft the write-up, the prompt, the diagram and the prototype script. For the tricky cases (D with no finish date, C with the hidden instruction, and how to score price), I asked it for the options and the reasons for each, then chose which approach to use. One place I disagreed with or corrected the AI: WRITE YOUR REAL EXAMPLE HERE.
+I used Claude (in Claude Code) to break down the brief and to draft the write-up, the prompt, the diagram and the prototype script. For the tricky cases (D with no finish date, C with the hidden instruction, and how to score price), I asked it for the options and the reasons for each, then chose which approach to use. One place I corrected the AI: its setup instructions loaded the API key with `export $(cat .env | xargs)`. I questioned whether that was the right way, and on review it is fragile (it breaks on values with spaces or quotes), so it was replaced with `set -a; source .env; set +a`.
