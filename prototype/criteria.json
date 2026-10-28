@@ -1,0 +1,45 @@
+{
+  "category": "Commercial Solar Installation",
+  "version": "solar-v1",
+  "project_summary": "150 kW rooftop solar system on a warehouse in Windsor, Ontario. Budget ceiling $260,000 CAD. Must be complete within 16 weeks of award.",
+  "budget_ceiling_cad": 260000,
+  "max_weeks": 16,
+  "experience_window_years": 5,
+  "fields": [
+    { "key": "bidder_name", "type": "string", "definition": "Legal name of the company submitting the proposal." },
+    { "key": "licence_held_by_bidder", "type": "boolean", "definition": "true only if the proposal states that the BIDDER itself holds an Ontario electrical contractor licence. If electrical work is subcontracted, the licence holder is someone else, or it is 'to be confirmed', set false and explain in note." },
+    { "key": "licence_number", "type": "string", "definition": "The licence number exactly as written." },
+    { "key": "wsib_clearance", "type": "boolean", "definition": "WSIB clearance stated as held." },
+    { "key": "liability_insurance_cad", "type": "number", "definition": "Liability insurance amount in CAD." },
+    { "key": "qualifying_installs_count", "type": "integer", "definition": "Number of COMMERCIAL installs of 100 kW or more completed within the 5 years before the evaluation date. If the stated period starts earlier than that window, give the stated number and set note to 'window_uncertain'." },
+    { "key": "total_price_cad", "type": "number", "definition": "Total all-in price in CAD." },
+    { "key": "completion_weeks", "type": "number", "definition": "Weeks from award to completion. If the schedule is not committed (e.g. 'to be determined'), null." },
+    { "key": "panel_warranty_years", "type": "number", "definition": "Panel warranty length in years." },
+    { "key": "workmanship_warranty_years", "type": "number", "definition": "Workmanship warranty length in years." },
+    { "key": "team_named_lead", "type": "boolean", "definition": "A project lead/manager is named or committed as a specific role at proposal time (not 'assigned later')." },
+    { "key": "team_crew_described", "type": "boolean", "definition": "Crew size or composition stated." },
+    { "key": "team_safety_plan", "type": "boolean", "definition": "A site safety plan is included." },
+    { "key": "team_monitoring_plan", "type": "boolean", "definition": "Post-install performance monitoring is offered. Progress reporting during construction does NOT count." }
+  ],
+  "mandatory": [
+    { "name": "Ontario electrical contractor licence", "rule": "licence_held_by_bidder" },
+    { "name": "WSIB clearance", "rule": "wsib_clearance" },
+    { "name": "$5M liability insurance", "rule": "min_insurance", "min": 5000000 }
+  ],
+  "weighted": [
+    { "name": "Relevant experience", "weight": 30, "formula": "higher_is_better", "field": "qualifying_installs_count" },
+    { "name": "Price", "weight": 25, "formula": "lower_is_better", "field": "total_price_cad" },
+    { "name": "Timeline", "weight": 15, "formula": "lower_is_better", "field": "completion_weeks" },
+    { "name": "Warranty", "weight": 15, "formula": "warranty", "panel_full_years": 25, "panel_share": 5, "workmanship_share": 10 },
+    { "name": "Team and approach", "weight": 15, "formula": "checklist", "fields": ["team_named_lead", "team_crew_described", "team_safety_plan", "team_monitoring_plan"] }
+  ],
+  "injection_patterns": [
+    "automated review",
+    "ignore (all |any )?(previous|prior|above) instructions",
+    "rank (it|this|us) (first|1st|highest)",
+    "full marks",
+    "pre-?approved",
+    "note to (the )?(ai|model|assistant|reviewer)",
+    "system prompt"
+  ]
+}
