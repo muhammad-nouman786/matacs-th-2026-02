@@ -1,0 +1,5 @@
+ .env
+  prototype/samples/
+  prototype/out/
+  __pycache__/
+  .DS_Store
